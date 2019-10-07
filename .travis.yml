@@ -1,0 +1,18 @@
+
+language: python
+python:
+- "3.7-dev"
+addons:
+  apt:
+    packages:
+      - google-chrome-stable
+install:
+- make deps
+before_script:
+- wget https://chromedriver.storage.googleapis.com/73.0.3683.68/chromedriver_linux64.zip
+- unzip chromedriver_linux64.zip -d /home/travis/virtualenv/python3.7-dev/bin/
+- export CHROME_BIN=chromium-browser
+
+script:
+- make test
+- google-chrome --version
